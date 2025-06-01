@@ -13,7 +13,7 @@ public class Alquiler {
     private LocalDate fecha;
     private LocalTime horaInicio;
     private LocalTime horaFin;
-    private double precio; // generado, no seteado desde código
+    private double precio;
     public Alquiler(int numeroOperacion, int idCliente, int codigoEscritorio, LocalDate fecha, LocalTime horaInicio, LocalTime horaFin, double precio ) {
        this.numOperacion = numeroOperacion;
        this.idCliente = idCliente;
@@ -52,7 +52,7 @@ public class Alquiler {
     }
 
     public double getPrecio() { return precio; }
-    // no setter para precio porque es generado en DB
+
     public double calcularPrecio() {
         //metodo auxiliar para el informe
         long horas = Duration.between(horaInicio, horaFin).toHours();

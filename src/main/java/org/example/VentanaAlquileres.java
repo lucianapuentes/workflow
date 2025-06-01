@@ -32,9 +32,8 @@ public class VentanaAlquileres extends JFrame {
         setSize(700, 300);
         setLocationRelativeTo(null);
 
-        // Ahora con más columnas
         modelo = new DefaultTableModel(new Object[]{
-                "ID", "Cliente", "Fecha", "Hora Inicio", "Hora Fin", "Código Escritorio", "Precio"
+                "Número Operación", "Cliente", "Fecha", "Hora Inicio", "Hora Fin", "Código Escritorio", "Precio"
         }, 0);
         tabla = new JTable(modelo);
 
