@@ -1,5 +1,7 @@
 package org.example;
 import org.example.Cliente;
+
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -45,6 +47,16 @@ public class Alquiler {
     public LocalTime getHoraFin() { return horaFin; }
     public void setHoraFin(LocalTime horaFin) { this.horaFin = horaFin; }
 
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
     public double getPrecio() { return precio; }
     // no setter para precio porque es generado en DB
+    public double calcularPrecio() {
+        //metodo auxiliar para el informe
+        long horas = Duration.between(horaInicio, horaFin).toHours();
+        return horas * 500;
+    }
+
 }

@@ -43,7 +43,29 @@ public class ClienteDAO {
         ps.close();
         con.close();
     }
+    public static List<Cliente> obtenerTodos() {
+        List<Cliente> clientes = new ArrayList<>();
 
+        try (Connection conn = Conexion.getConexion();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM clientes.clientes")) {
+
+            while (rs.next()) {
+                Cliente c = new Cliente();
+                c.setId(rs.getInt("id"));
+                c.setNombre(rs.getString("nombre"));
+                c.setApellido(rs.getString("apellido"));
+                c.setEmail(rs.getString("email"));
+                c.setTelefono(rs.getString("telefono"));
+                clientes.add(c);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return clientes;
+    }
     public void eliminar(int id) throws SQLException {
         Connection con = Conexion.getConexion();
         PreparedStatement ps = con.prepareStatement("DELETE FROM clientes.clientes WHERE id = ?");

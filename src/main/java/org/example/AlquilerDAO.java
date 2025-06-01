@@ -32,6 +32,31 @@ public class AlquilerDAO {
         con.close();
         return lista;
     }
+    public static List<Alquiler> obtenerTodos() {
+        List<Alquiler> alquileres = new ArrayList<>();
+
+        try (Connection conn = Conexion.getConexion();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM clientes.alquileres")) {
+
+            while (rs.next()) {
+                Alquiler a = new Alquiler();
+                a.setNumOperacion(rs.getInt("num_operacion"));
+                a.setIdCliente(rs.getInt("id_cliente"));
+                a.setCodigoEscritorio(Integer.parseInt(rs.getString("codigo_escritorio")));
+                a.setFecha(rs.getDate("fecha").toLocalDate());
+                a.setHoraInicio(rs.getTime("hora_inicio").toLocalTime());
+                a.setHoraFin(rs.getTime("hora_fin").toLocalTime());
+                a.setPrecio(a.calcularPrecio()); // solo si usás get/se
+                alquileres.add(a);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return alquileres;
+    }
 
     public void insertar(Alquiler alquiler) throws SQLException {
         Connection con = Conexion.getConexion();

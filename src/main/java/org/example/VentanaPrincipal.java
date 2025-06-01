@@ -24,10 +24,23 @@ public class VentanaPrincipal extends JFrame {
                 new VentanaAlquileres(); // Abre ventana de alquileres
             }
         });
+        JButton btnGenerarInforme = new JButton("Generar Informe PDF");
+        btnGenerarInforme.addActionListener(e -> {
+            try {
+                InformePDFGenerator.generarInformeCompleto("informe.pdf");
+                JOptionPane.showMessageDialog(this, "Informe PDF generado exitosamente.");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error al generar el informe: " + ex.getMessage());
+                ex.printStackTrace();
+            }
+        });
+
 
         JPanel panel = new JPanel();
         panel.add(btnClientes);
-        panel.add(btnAlquileres); // Agrego el botón de alquileres al panel
+        panel.add(btnAlquileres);
+        panel.add(btnGenerarInforme);
+        // Agrego el botón de alquileres al panel
 
         add(panel);
 
