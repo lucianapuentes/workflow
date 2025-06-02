@@ -2,9 +2,7 @@ package org.example;
 
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.io.File;
 import java.util.List;
 
 public class VentanaClientes extends JFrame {
@@ -23,15 +21,31 @@ public class VentanaClientes extends JFrame {
         JButton btnAgregar = new JButton("Agregar");
         JButton btnEditar = new JButton("Editar");
         JButton btnEliminar = new JButton("Eliminar");
+        JButton btnImportar = new JButton("Importar clientes");
+        JButton btnExportar = new JButton("Exportar clientes");
 
         btnAgregar.addActionListener(e -> agregarCliente());
         btnEditar.addActionListener(e -> editarCliente());
         btnEliminar.addActionListener(e -> eliminarCliente());
+        btnExportar.addActionListener(e -> Exportador.exportarClientesCSV("clientes_exportados.csv"));
+        JButton btnImportarClientes = new JButton("Importar Clientes CSV");
+        btnImportarClientes.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Seleccionar archivo CSV de clientes");
+
+            int userSelection = fileChooser.showOpenDialog(null);
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                File archivoSeleccionado = fileChooser.getSelectedFile();
+                Importador.importarClientesCSV(archivoSeleccionado.getAbsolutePath());
+            }
+        });
 
         JPanel panelBotones = new JPanel();
         panelBotones.add(btnAgregar);
         panelBotones.add(btnEditar);
         panelBotones.add(btnEliminar);
+        panelBotones.add(btnImportarClientes);
+        panelBotones.add(btnExportar);
 
         add(new JScrollPane(tabla), BorderLayout.CENTER);
         add(panelBotones, BorderLayout.SOUTH);

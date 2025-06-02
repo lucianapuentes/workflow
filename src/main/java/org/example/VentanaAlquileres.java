@@ -5,23 +5,12 @@ import org.example.Alquiler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
-
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 
 public class VentanaAlquileres extends JFrame {
     private JTable tabla;
@@ -39,9 +28,27 @@ public class VentanaAlquileres extends JFrame {
 
         JButton btnNuevo = new JButton("Nuevo Alquiler");
         btnNuevo.addActionListener(e -> nuevoAlquiler());
+        JButton btnExportarAlquileres = new JButton("Exportar Alquileres CSV");
+        btnExportarAlquileres.addActionListener(e -> Exportador.exportarAlquileresCSV("alquileres.csv"));
+        JButton btnImportarAlquileres = new JButton("Importar Alquileres CSV");
+        btnImportarAlquileres.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Seleccionar archivo CSV de alquileres");
+
+            int userSelection = fileChooser.showOpenDialog(null);
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                File archivoSeleccionado = fileChooser.getSelectedFile();
+                Importador.importarAlquileresCSV(archivoSeleccionado.getAbsolutePath());
+            }
+        });
+        JPanel panelBotones = new JPanel();
+        panelBotones.add(btnNuevo);
+        panelBotones.add(btnExportarAlquileres);
+        panelBotones.add(btnImportarAlquileres);
+
 
         add(new JScrollPane(tabla), BorderLayout.CENTER);
-        add(btnNuevo, BorderLayout.SOUTH);
+        add(panelBotones, BorderLayout.SOUTH);
 
         mostrarActivos();
         setVisible(true);

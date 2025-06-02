@@ -5,9 +5,7 @@ import org.example.ClienteDAO;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import java.awt.*;
+
 //ventana para editar e insertar nuevos clientes
 public class ClienteForm extends JDialog {
     private JTextField txtNombre, txtApellido, txtEmail, txtTelefono;
