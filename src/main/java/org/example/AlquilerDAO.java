@@ -21,8 +21,7 @@ public class AlquilerDAO {
                     rs.getInt("codigo_escritorio"),
                     rs.getDate("fecha").toLocalDate(),
                     rs.getTime("hora_inicio").toLocalTime(),
-                    rs.getTime("hora_fin").toLocalTime(),
-                    rs.getDouble("precio")
+                    rs.getTime("hora_fin").toLocalTime()
             );
             lista.add(a);
         }

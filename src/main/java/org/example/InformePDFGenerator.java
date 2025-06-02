@@ -50,7 +50,7 @@ public class InformePDFGenerator {
 
                 content.newLine();
                 content.showText(String.format("   Inicio: %s, Fin: %s, Precio: %.2f",
-                        a.getHoraInicio(), a.getHoraFin(), a.getPrecio()));
+                        a.getHoraInicio(), a.getHoraFin(), a.calcularPrecio()));
             }
 
             content.endText();

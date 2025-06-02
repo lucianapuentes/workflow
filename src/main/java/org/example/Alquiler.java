@@ -14,14 +14,14 @@ public class Alquiler {
     private LocalTime horaInicio;
     private LocalTime horaFin;
     private double precio;
-    public Alquiler(int numeroOperacion, int idCliente, int codigoEscritorio, LocalDate fecha, LocalTime horaInicio, LocalTime horaFin, double precio ) {
+    public Alquiler(int numeroOperacion, int idCliente, int codigoEscritorio, LocalDate fecha, LocalTime horaInicio, LocalTime horaFin ) {
        this.numOperacion = numeroOperacion;
        this.idCliente = idCliente;
        this.codigoEscritorio = codigoEscritorio;
        this.fecha = fecha;
        this.horaInicio = horaInicio;
        this.horaFin = horaFin;
-       this.precio = precio;
+       this.precio = calcularPrecio();
     }
 
     public Alquiler() {
