@@ -37,7 +37,7 @@ public class AlquilerDAO {
 
         try (Connection conn = Conexion.getConexion();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM clientes.alquileres")) {
+         ResultSet rs = stmt.executeQuery("SELECT * FROM clientes.alquileres ORDER BY num_operacion ASC");) {
 
             while (rs.next()) {
                 Alquiler a = new Alquiler();

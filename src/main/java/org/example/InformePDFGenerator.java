@@ -33,7 +33,7 @@ public class InformePDFGenerator {
             content.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 10);
             for (Cliente c : clientes) {
                 content.newLine();
-                content.showText(" - " + c.getId() + ": " + c.getNombre() + " " + c.getApellido() + ", " + c.getEmail());
+                content.showText(" - " + c.getId() + ": " + c.getNombre() + " " + c.getApellido() + ", " + c.getEmail() + ", " +c.getTelefono());
             }
 
             content.newLine();
@@ -45,7 +45,12 @@ public class InformePDFGenerator {
             content.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 10);
             for (Alquiler a : alquileres) {
                 content.newLine();
-                content.showText(" - Numero de operacion: " + a.getNumOperacion() + ", Cliente ID: " + a.getIdCliente() + ", Fecha: " + a.getFecha() + ", Hora inicio:" + a.getHoraInicio() + ", Hora final: "+ a.getHoraFin()+ ", Precio: " + a.getPrecio());
+                content.showText(String.format(" - Operación: %d, Cliente ID: %d, Escritorio: %s, Fecha: %s",
+                        a.getNumOperacion(), a.getIdCliente(), a.getCodigoEscritorio(), a.getFecha()));
+
+                content.newLine();
+                content.showText(String.format("   Inicio: %s, Fin: %s, Precio: %.2f",
+                        a.getHoraInicio(), a.getHoraFin(), a.getPrecio()));
             }
 
             content.endText();
@@ -55,4 +60,3 @@ public class InformePDFGenerator {
         }
     }
 }
-

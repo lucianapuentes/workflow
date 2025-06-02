@@ -48,7 +48,7 @@ public class ClienteDAO {
 
         try (Connection conn = Conexion.getConexion();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM clientes.clientes")) {
+             ResultSet rs = stmt.executeQuery("SELECT * FROM clientes.clientes ORDER BY id ASC")) {
 
             while (rs.next()) {
                 Cliente c = new Cliente();
