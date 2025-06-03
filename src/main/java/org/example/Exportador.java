@@ -33,7 +33,7 @@ public class Exportador {
         }
     }
     public static void exportarAlquileresCSV(String archivoDestino) {
-        String sql = "SELECT num_operacion, id_cliente, codigo_escritorio, fecha, hora_inicio, hora_fin, precio FROM clientes.alquileres";
+        String sql = "SELECT num_operacion, id_cliente, codigo_escritorio, fecha, hora_inicio, hora_fin FROM clientes.alquileres";
 
         try (Connection conn = Conexion.getConexion();
              Statement stmt = conn.createStatement();
@@ -48,8 +48,7 @@ public class Exportador {
                         rs.getString("codigo_escritorio") + "," +
                         rs.getDate("fecha") + "," +
                         rs.getTime("hora_inicio") + "," +
-                        rs.getTime("hora_fin") + "," +
-                        rs.getDouble("precio") + "\n");
+                        rs.getTime("hora_fin") + "\n");
             }
 
             JOptionPane.showMessageDialog(null, "Alquileres exportados correctamente.");
